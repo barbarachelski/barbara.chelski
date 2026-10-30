@@ -21,7 +21,7 @@ strong{font-weight:600}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-section{padding:104px 0}
+section{padding:104px 0;scroll-margin-top:96px}
 .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--bronze-texto);font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:7px;height:7px;background:var(--bronze);transform:rotate(45deg);flex:none}
 .dark .eyebrow{color:var(--areia)}
@@ -43,15 +43,16 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 
 
 /* texturas e padrão */
-:root{--pat-bronze:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='44'%3E%3Cpath fill='%23B89378' d='M13 2l9 9-9 9-9-9zM39 24l9 9-9 9-9-9z'/%3E%3C/svg%3E");--pat-areia:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='44'%3E%3Cpath fill='%23E1C8B1' d='M13 2l9 9-9 9-9-9zM39 24l9 9-9 9-9-9z'/%3E%3C/svg%3E")}
+:root{--pat-cobre:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='44'%3E%3Cpath fill='%23A86B45' d='M13 2l9 9-9 9-9-9zM39 24l9 9-9 9-9-9z'/%3E%3C/svg%3E");--pat-bronze:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='44'%3E%3Cpath fill='%23B89378' d='M13 2l9 9-9 9-9-9zM39 24l9 9-9 9-9-9z'/%3E%3C/svg%3E");--pat-areia:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='44'%3E%3Cpath fill='%23E1C8B1' d='M13 2l9 9-9 9-9-9zM39 24l9 9-9 9-9-9z'/%3E%3C/svg%3E")}
 .tex-dark{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("img/tex/grafite.jpg") center/cover,var(--grafite)}
 .tex-bege{background:linear-gradient(rgba(225,200,177,.55),rgba(225,200,177,.55)),url("img/tex/bege.jpg") center/cover,var(--areia)}
-.tex-claro{background:linear-gradient(rgba(246,241,239,.72),rgba(246,241,239,.72)),url("img/tex/claro.jpg") center/cover,var(--nevoa)}
+.tex-claro{background:linear-gradient(rgba(246,241,239,.86),rgba(246,241,239,.86)),url("img/tex/claro.jpg") center/cover,var(--nevoa)}
 .has-pat{position:relative;overflow:hidden}
 .has-pat>.wrap{position:relative;z-index:1}
 .pat{position:absolute;pointer-events:none;z-index:0;background-repeat:repeat;background-size:52px 44px}
 .pat-bronze{background-image:var(--pat-bronze)}
 .pat-areia{background-image:var(--pat-areia)}
+.pat-cobre{background-image:var(--pat-cobre)}
 
 /* header */
 header{position:sticky;top:0;z-index:40;color:var(--nevoa);border-bottom:1px solid rgba(184,147,120,.35)}
@@ -70,7 +71,7 @@ nav .btn:hover{background:var(--nevoa);border-color:var(--nevoa)}
 
 /* hero */
 .hero{padding:72px 0 0}
-.hero .pat{right:0;top:0;bottom:0;width:58%;opacity:.22;-webkit-mask-image:linear-gradient(to left,#000 10%,transparent 85%);mask-image:linear-gradient(to left,#000 10%,transparent 85%)}
+.hero .pat{right:0;top:0;bottom:0;width:58%;opacity:.32;-webkit-mask-image:linear-gradient(to left,#000 10%,transparent 85%);mask-image:linear-gradient(to left,#000 10%,transparent 85%)}
 .hero .lead+.lead{margin-top:14px}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:end}
 .hero-txt{padding-bottom:88px}
@@ -238,7 +239,7 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
  .steps .n{font-size:32px}
  summary{font-size:20px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.track{animation:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.track{animation-duration:180s}}
 </style>
 </head>
 <body>
@@ -267,7 +268,7 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
 
 <!-- 1. abertura -->
 <section class="hero tex-claro has-pat" id="topo">
- <div class="pat pat-bronze" aria-hidden="true"></div>
+ <div class="pat pat-cobre" aria-hidden="true"></div>
  <div class="wrap hero-grid">
   <div class="hero-txt">
    <h1>Seu esporte pode ser <em class="acc">patrocinado.</em></h1>
@@ -293,8 +294,8 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
 <!-- 2. problema -->
 <section id="problema">
  <div class="wrap">
-  <h2>Existe dinheiro para o esporte. O que falta é <em class="acc">um bom projeto.</em></h2>
-  <p class="lead">O recurso existe. O que falta é informação e um projeto bem estruturado.</p>
+  <h2>Existe dinheiro para o esporte.<br>O que falta é <em class="acc">um bom projeto.</em></h2>
+  <p class="lead" style="max-width:none">O recurso existe. O que falta é informação e um projeto bem estruturado.</p>
   <div class="num-grid g3">
    <div class="card"><span class="n">01</span><h3>Não sabem que podem</h3><p>Muitos atletas e técnicos nunca ouviram falar do Proesporte, ou acham que ele é só para clubes grandes.</p></div>
    <div class="card"><span class="n">02</span><h3>O edital assusta</h3><p>Planilhas, metas, documentos e prazos fazem muita gente desistir antes mesmo de começar.</p></div>
