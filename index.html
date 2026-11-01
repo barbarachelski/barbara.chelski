@@ -236,6 +236,18 @@ nav .btn:hover{background:var(--nevoa);border-color:var(--nevoa)}
 .hp{position:absolute;left:-9999px}
 @media (max-width:860px){.aviso-box{grid-template-columns:1fr;padding:32px 24px;gap:32px}}
 
+
+/* aviso de cookies */
+.ck{position:fixed;left:20px;right:20px;bottom:20px;z-index:70;max-width:560px;background:var(--grafite);color:var(--nevoa);border:1px solid rgba(225,200,177,.3);border-radius:18px;padding:20px 22px;box-shadow:0 18px 50px rgba(30,31,31,.35);display:none;font-size:14.5px;line-height:1.55}
+.ck.show{display:block}
+.ck p{color:#d4cbc4;margin-bottom:14px}
+.ck .btns{margin-top:0;gap:10px}
+.ck .btn{padding:10px 20px;font-size:14px}
+.ck .ok{background:var(--areia);border-color:var(--areia);color:var(--grafite)}
+.ck .no{border-color:rgba(225,200,177,.5);color:var(--nevoa)}
+.ck-link{background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;padding:0}
+.ck-link:hover{color:var(--areia)}
+
 /* faq */
 .faq{max-width:840px;margin:44px auto 0}
 details{border-bottom:1px solid rgba(30,31,31,.14)}
@@ -568,6 +580,7 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
   <span>© 2026 Bárbara Chelski · Projetos Incentivados · Curitiba/PR</span>
   <div class="foot-links">
    <a href="mailto:barbara.chelski@gmail.com">barbara.chelski@gmail.com</a>
+   <button class="ck-link" id="ckPref" type="button" hidden>Cookies</button>
    <a href="https://wa.me/5541999613757?text=Ol%C3%A1%2C%20B%C3%A1rbara%21%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20projetos%20para%20o%20Proesporte." target="_blank" rel="noopener">WhatsApp</a>
   </div>
  </div>
@@ -577,12 +590,44 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8A9 9 0 1 1 8.4 20.3L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
 </a>
 
+<div class="ck" id="ck" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+ <p>Uso cookies de estatística para entender quantas pessoas visitam o site e o que mais interessa. Você aceita?</p>
+ <div class="btns"><button class="btn ok" id="ckOk">Aceitar</button><button class="btn no" id="ckNo">Recusar</button></div>
+</div>
+
 <script>
 (function(){
  var menuBtn=document.getElementById('menuBtn'),menu=document.getElementById('menu');
  menuBtn.addEventListener('click',function(){var o=menu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)});
  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open')})});
 
+ /* ===== Estatísticas (Google Analytics 4) =====
+    Para ativar, coloque o código da propriedade (formato G-XXXXXXXXXX) abaixo. */
+ var GA_ID='';
+ var ck=document.getElementById('ck'),pref=document.getElementById('ckPref');
+ function getC(){try{return localStorage.getItem('bc_cookies')}catch(e){return null}}
+ function setC(v){try{localStorage.setItem('bc_cookies',v)}catch(e){}}
+ window.track=function(n,p){if(window.gtag)window.gtag('event',n,p||{})};
+ function loadGA(){
+  if(!GA_ID||window.gtag)return;
+  var sc=document.createElement('script');sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(sc);
+  window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};
+  gtag('js',new Date());gtag('config',GA_ID,{anonymize_ip:true});
+ }
+ if(GA_ID){
+  pref.hidden=false;
+  var c=getC();
+  if(c==='sim')loadGA();else if(c!=='nao')ck.classList.add('show');
+  document.getElementById('ckOk').addEventListener('click',function(){setC('sim');ck.classList.remove('show');loadGA()});
+  document.getElementById('ckNo').addEventListener('click',function(){setC('nao');ck.classList.remove('show')});
+  pref.addEventListener('click',function(){ck.classList.add('show')});
+ }
+ document.addEventListener('click',function(e){
+  var a=e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';
+  if(h.indexOf('wa.me')>-1)track('clique_whatsapp',{local:a.className||'link'});
+  else if(h.indexOf('docs.google.com/forms')>-1)track('abriu_avaliacao');
+  else if(h.indexOf('mailto:')===0)track('clique_email');
+ });
  var WA='https://wa.me/5541999613757?text=Ol%C3%A1%2C%20B%C3%A1rbara%21%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20projetos%20para%20o%20Proesporte.';
  var FORM='https://docs.google.com/forms/d/e/1FAIpQLSdQvA6eRAsFjQ3nJ3kjcopjywAMI7AYX1p8XulacIhpi2-6IA/viewform';
  var Q=[
@@ -602,6 +647,7 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
   box.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){var k=+b.dataset.k;pts+=Q[i].w[k];if(i===2&&k===0)pcd=true;i++;render();var f=box.querySelector('.opt,.btn');if(f)f.focus({preventScroll:true})})});
  }
  function result(){
+  track('teste_concluido',{pontos:pts});
   var t,m;
   if(pts>=8){t='Você tem um ótimo perfil para o Proesporte.';m='O próximo passo é a avaliação completa, para eu entender os detalhes do seu caso.'}
   else if(pts>=5){t='Há boas chances de você ter um projeto.';m='Alguns pontos precisam de atenção, e é justamente isso que eu analiso na avaliação completa.'}
@@ -627,7 +673,7 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
    fetch('https://formsubmit.co/ajax/barbara.chelski@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({_subject:'Lista do próximo edital: '+nome,_template:'table',Nome:nome,WhatsApp:document.getElementById('aZap').value,Modalidade:mod||'-',Origem:'Site barbarachelski.com.br'})})
    .then(function(r){if(!r.ok)throw 0;return r.json()})
-   .then(function(){document.getElementById('avisoArea').innerHTML='<div class="f-ok" role="status"><b>Pronto, '+nome.split(' ')[0].replace(/[<>&]/g,'')+'!</b>Você está na lista. Assim que o próximo edital do Proesporte for publicado, eu te aviso pelo WhatsApp.</div>'})
+   .then(function(){track('inscricao_lista_edital');document.getElementById('avisoArea').innerHTML='<div class="f-ok" role="status"><b>Pronto, '+nome.split(' ')[0].replace(/[<>&]/g,'')+'!</b>Você está na lista. Assim que o próximo edital do Proesporte for publicado, eu te aviso pelo WhatsApp.</div>'})
    .catch(function(){btn.disabled=false;btn.textContent='Quero ser avisado(a)';err.innerHTML='Não consegui enviar agora. Tente de novo ou <a href="'+WA+'" target="_blank" rel="noopener" style="color:inherit">me chame no WhatsApp</a>.'});
   });
  }
