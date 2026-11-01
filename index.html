@@ -214,6 +214,28 @@ nav .btn:hover{background:var(--nevoa);border-color:var(--nevoa)}
 .priv{display:flex;gap:8px;align-items:center;font-size:13px;color:#a69c94!important;margin-top:18px}
 .priv svg{width:16px;height:16px;flex:none}
 
+
+/* lista do próximo edital */
+.aviso-box{border-radius:28px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;color:var(--nevoa);background:linear-gradient(rgba(30,31,31,.5),rgba(30,31,31,.5)),url("img/tex/grafite.jpg") center/cover,var(--grafite);position:relative;overflow:hidden}
+.aviso-box .pat{right:0;top:0;bottom:0;width:45%;opacity:.1;-webkit-mask-image:linear-gradient(to left,#000,transparent);mask-image:linear-gradient(to left,#000,transparent)}
+.aviso-box>*:not(.pat){position:relative;z-index:1}
+.aviso-box em.acc{color:var(--areia)}
+.aviso-box h2{margin-bottom:16px}
+.aviso-box .lead{color:#d4cbc4}
+.aviso-form{display:grid;gap:14px}
+.aviso-form label{font-size:13.5px;font-weight:500;color:var(--areia);display:block;margin-bottom:6px}
+.aviso-form input[type=text],.aviso-form input[type=tel]{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(225,200,177,.35);background:rgba(246,241,239,.96);font:inherit;font-size:16px;color:var(--grafite)}
+.aviso-form input:focus-visible{outline:2px solid var(--bronze);outline-offset:2px}
+.aviso-form label.consent{display:grid;margin:0;font-weight:400;color:#cfc6bf;grid-template-columns:22px 1fr;gap:10px;font-size:13.5px;color:#cfc6bf;line-height:1.5;align-items:start}
+.consent input{width:18px;height:18px;margin-top:2px;accent-color:var(--bronze)}
+.aviso-form .btn{justify-content:center;background:var(--areia);border-color:var(--areia);color:var(--grafite);margin-top:4px}
+.aviso-form .btn:hover{background:var(--nevoa);border-color:var(--nevoa)}
+.f-err{color:#F2B8A8;font-size:13px;min-height:0}
+.f-ok{background:rgba(246,241,239,.96);color:var(--grafite);border-radius:16px;padding:22px;font-size:16px}
+.f-ok b{font-family:"Playfair",serif;font-weight:500;font-size:22px;display:block;margin-bottom:6px}
+.hp{position:absolute;left:-9999px}
+@media (max-width:860px){.aviso-box{grid-template-columns:1fr;padding:32px 24px;gap:32px}}
+
 /* faq */
 .faq{max-width:840px;margin:44px auto 0}
 details{border-bottom:1px solid rgba(30,31,31,.14)}
@@ -485,6 +507,29 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
  </div>
 </section>
 
+<!-- lista do próximo edital -->
+<section id="aviso" style="padding-top:24px">
+ <div class="wrap">
+  <div class="aviso-box">
+   <div>
+    <h2>Me avise do <em class="acc">próximo edital</em></h2>
+    <p class="lead">Os editais do Proesporte abrem por tempo limitado, e quem se prepara antes sai na frente. Deixe seu WhatsApp e eu aviso assim que o próximo edital for publicado.</p>
+   </div>
+   <div id="avisoArea">
+    <form class="aviso-form" id="avisoForm" novalidate>
+     <div><label for="aNome">Nome</label><input type="text" id="aNome" name="nome" autocomplete="name" required></div>
+     <div><label for="aZap">WhatsApp com DDD</label><input type="tel" id="aZap" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="(41) 99999-9999" required></div>
+     <div><label for="aMod">Modalidade <span style="font-weight:400;color:#cfc6bf">(opcional)</span></label><input type="text" id="aMod" name="modalidade" placeholder="Paranatação, karatê, vôlei…"></div>
+     <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+     <label class="consent"><input type="checkbox" id="aOk" required><span>Aceito receber mensagens no WhatsApp sobre editais do Proesporte. Posso pedir para sair a qualquer momento.</span></label>
+     <div class="f-err" id="aErr" role="alert"></div>
+     <button class="btn" type="submit" id="aBtn">Quero ser avisado(a)</button>
+    </form>
+   </div>
+  </div>
+ </div>
+</section>
+
 <!-- 10. faq -->
 <section class="servicos" id="duvidas">
  <div class="wrap center">
@@ -538,6 +583,7 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
  menuBtn.addEventListener('click',function(){var o=menu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)});
  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open')})});
 
+ var WA='https://wa.me/5541999613757?text=Ol%C3%A1%2C%20B%C3%A1rbara%21%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20projetos%20para%20o%20Proesporte.';
  var FORM='https://docs.google.com/forms/d/e/1FAIpQLSdQvA6eRAsFjQ3nJ3kjcopjywAMI7AYX1p8XulacIhpi2-6IA/viewform';
  var Q=[
   {q:'Você mora ou tem sua entidade no Paraná há pelo menos dois anos?',o:['Sim','Não','Não tenho certeza'],w:[2,0,1]},
@@ -559,12 +605,32 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
   var t,m;
   if(pts>=8){t='Você tem um ótimo perfil para o Proesporte.';m='O próximo passo é a avaliação completa, para eu entender os detalhes do seu caso.'}
   else if(pts>=5){t='Há boas chances de você ter um projeto.';m='Alguns pontos precisam de atenção, e é justamente isso que eu analiso na avaliação completa.'}
-  else{t='Talvez ainda não seja o momento, mas pode ser em breve.';m='Preencha a avaliação mesmo assim: dá para se preparar para o próximo edital.'}
+  else{t='Talvez ainda não seja o momento, mas pode ser em breve.';m='Preencha a avaliação mesmo assim, ou <a href="#aviso" style="color:var(--bronze-texto)">entre na lista do próximo edital</a> para se preparar com antecedência.'}
   var extra=pcd?'<p>Projetos para pessoas com deficiência têm uma parte dos recursos reservada no edital.</p>':'';
   box.innerHTML='<div class="result"><div class="q-step">Resultado</div><div class="q-text">'+t+'</div><p>'+m+'</p>'+extra+'<div class="btns"><a class="btn btn-solid" href="'+FORM+'" target="_blank" rel="noopener">Fazer a avaliação completa →</a><button class="btn btn-line" id="again">Refazer o teste</button></div></div><div class="bar"><i style="width:100%"></i></div>';
   document.getElementById('again').addEventListener('click',function(){i=0;pts=0;pcd=false;render()});
  }
  render();
+
+ var af=document.getElementById('avisoForm');
+ if(af){
+  var err=document.getElementById('aErr'),btn=document.getElementById('aBtn');
+  ['aNome','aZap','aOk'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){err.textContent=''})});
+  af.addEventListener('submit',function(e){
+   e.preventDefault();
+   var nome=document.getElementById('aNome').value.trim(),zap=document.getElementById('aZap').value.replace(/\D/g,''),mod=document.getElementById('aMod').value.trim();
+   if(!nome){err.textContent='Escreva seu nome.';document.getElementById('aNome').focus();return}
+   if(zap.length<10||zap.length>11){err.textContent='Informe um WhatsApp válido, com DDD.';document.getElementById('aZap').focus();return}
+   if(!document.getElementById('aOk').checked){err.textContent='Marque a autorização para receber o aviso no WhatsApp.';return}
+   if(af._honey.value){return}
+   btn.disabled=true;btn.textContent='Enviando…';
+   fetch('https://formsubmit.co/ajax/barbara.chelski@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({_subject:'Lista do próximo edital: '+nome,_template:'table',Nome:nome,WhatsApp:document.getElementById('aZap').value,Modalidade:mod||'-',Origem:'Site barbarachelski.com.br'})})
+   .then(function(r){if(!r.ok)throw 0;return r.json()})
+   .then(function(){document.getElementById('avisoArea').innerHTML='<div class="f-ok" role="status"><b>Pronto, '+nome.split(' ')[0].replace(/[<>&]/g,'')+'!</b>Você está na lista. Assim que o próximo edital do Proesporte for publicado, eu te aviso pelo WhatsApp.</div>'})
+   .catch(function(){btn.disabled=false;btn.textContent='Quero ser avisado(a)';err.innerHTML='Não consegui enviar agora. Tente de novo ou <a href="'+WA+'" target="_blank" rel="noopener" style="color:inherit">me chame no WhatsApp</a>.'});
+  });
+ }
 })();
 </script>
 </body>
