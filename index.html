@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="no-js">
+<script>document.documentElement.className="js"</script>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -248,6 +249,52 @@ nav .btn:hover{background:var(--nevoa);border-color:var(--nevoa)}
 .ck-link{background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;padding:0}
 .ck-link:hover{color:var(--areia)}
 
+
+/* revelar ao rolar */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.in{opacity:1;transform:none}
+.js .rv-d1{transition-delay:.1s}.js .rv-d2{transition-delay:.2s}.js .rv-d3{transition-delay:.3s}.js .rv-d4{transition-delay:.4s}.js .rv-d5{transition-delay:.5s}
+/* marca-texto */
+mark.hl{background:linear-gradient(transparent 58%,rgba(184,147,120,.38) 58%);color:inherit;padding:0 .1em;border-radius:2px}
+.mito mark.hl{background:linear-gradient(transparent 55%,rgba(246,241,239,.75) 55%)}
+.dark mark.hl{background:linear-gradient(transparent 60%,rgba(184,147,120,.45) 60%)}
+/* fluxo do dinheiro */
+.fluxo{background:#fff}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;position:relative;list-style:none}
+.flow li{position:relative;text-align:center;padding:0 18px}
+.flow li+li::before{content:"";position:absolute;top:44px;left:calc(-50% + 56px);right:calc(50% + 56px);border-top:2px dashed var(--bronze)}
+.flow li+li::after{content:"";position:absolute;top:39px;right:calc(50% + 50px);border:6px solid transparent;border-left:9px solid var(--bronze)}
+.flow .fi{width:88px;height:88px;border-radius:50%;margin:0 auto 22px;display:flex;align-items:center;justify-content:center;background:var(--nevoa);border:1.5px solid var(--areia);color:var(--bronze-texto)}
+.flow li:last-child .fi{background:var(--grafite);border-color:var(--grafite);color:var(--areia)}
+.flow .fi svg{width:38px;height:38px}
+.flow h3{font-size:22px;font-weight:600;margin-bottom:8px}
+.flow p{font-size:15.5px;color:#555;max-width:240px;margin:0 auto}
+.flow-note{margin-top:44px;text-align:center;font-size:15px;color:#555}
+/* o que o projeto cobre */
+.cobre{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.cob{display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:center;background:var(--nevoa);border-radius:20px;padding:24px 26px;border:1px solid rgba(30,31,31,.06)}
+.cob .ci{width:56px;height:56px;border-radius:16px;background:var(--grafite);color:var(--areia);display:flex;align-items:center;justify-content:center}
+.cob .ci svg{width:28px;height:28px}
+.cob h3{font-size:20px;font-weight:600;margin-bottom:2px}
+.cob p{font-size:14.5px;color:#666;line-height:1.5}
+.cobre-note{font-size:13.5px;color:#777;margin-top:22px}
+/* selo */
+.selo{display:inline-flex;align-items:center;gap:10px;background:rgba(225,200,177,.14);border:1px solid rgba(225,200,177,.45);color:var(--areia);border-radius:999px;padding:9px 18px 9px 12px;font-size:14px;font-weight:500;margin-bottom:22px}
+.selo .sd{width:26px;height:26px;border-radius:50%;background:var(--areia);color:var(--grafite);display:flex;align-items:center;justify-content:center}
+.selo .sd svg{width:16px;height:16px}
+@media (max-width:860px){
+ .flow{grid-template-columns:1fr;gap:40px;text-align:left}
+ .flow li{display:grid;grid-template-columns:72px 1fr;gap:18px;text-align:left;padding:0}
+ .flow .fi{width:72px;height:72px;margin:0}
+ .flow .fi svg{width:32px;height:32px}
+ .flow p{margin:0;max-width:none}
+ .flow li+li::before{top:-34px;left:35px;right:auto;bottom:auto;height:28px;border-top:0;border-left:2px dashed var(--bronze)}
+ .flow li+li::after{top:-10px;left:30px;right:auto;border:6px solid transparent;border-top:9px solid var(--bronze);border-bottom:0}
+ .cobre{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.cobre{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
 /* faq */
 .faq{max-width:840px;margin:44px auto 0}
 details{border-bottom:1px solid rgba(30,31,31,.14)}
@@ -358,13 +405,28 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
 <section id="problema">
  <div class="wrap">
   <h2>Existe dinheiro para o esporte.<br>O que falta é <em class="acc">um bom projeto.</em></h2>
-  <p class="lead" style="max-width:none">O recurso existe. O que falta é informação e um projeto bem estruturado.</p>
+  <p class="lead" style="max-width:none">O recurso existe. O que falta é <mark class="hl">informação e um projeto bem estruturado.</mark></p>
   <div class="num-grid g3">
-   <div class="card"><span class="n">01</span><h3>Não sabem que podem</h3><p>Muitos atletas e técnicos nunca ouviram falar do Proesporte, ou acham que ele é só para clubes grandes.</p></div>
-   <div class="card"><span class="n">02</span><h3>O edital assusta</h3><p>Planilhas, metas, documentos e prazos fazem muita gente desistir antes mesmo de começar.</p></div>
-   <div class="card"><span class="n">03</span><h3>Detalhes reprovam</h3><p>Orçamento mal justificado, documento faltando ou objetivo pouco claro tiram bons projetos da disputa.</p></div>
+   <div class="card rv rv-d1"><span class="n">01</span><h3>Não sabem que podem</h3><p>Muitos atletas e técnicos nunca ouviram falar do Proesporte, ou acham que ele é só para clubes grandes.</p></div>
+   <div class="card rv rv-d2"><span class="n">02</span><h3>O edital assusta</h3><p>Planilhas, metas, documentos e prazos fazem muita gente desistir antes mesmo de começar.</p></div>
+   <div class="card rv rv-d3"><span class="n">03</span><h3>Detalhes reprovam</h3><p>Orçamento mal justificado, documento faltando ou objetivo pouco claro tiram bons projetos da disputa.</p></div>
   </div>
   <p class="closing">Um bom projeto não depende de fama. Depende de <em class="acc">método</em>.</p>
+ </div>
+</section>
+
+<!-- fluxo do dinheiro -->
+<section class="fluxo" id="como-chega">
+ <div class="wrap center">
+  <p class="eyebrow">Entenda em 4 passos</p>
+  <h2 class="rv">Como o dinheiro chega <em class="acc">até o atleta</em></h2>
+  <ol class="flow">
+   <li class="rv rv-d1"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg></div><div><h3>A empresa</h3><p>Uma empresa do Paraná paga ICMS normalmente ao Estado.</p></div></li>
+   <li class="rv rv-d2"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h3"/><circle cx="9" cy="16" r="1"/><circle cx="15" cy="16" r="1"/><path d="M15 12l-6 6"/></svg></div><div><h3>Destina parte do imposto</h3><p>Ela escolhe destinar parte desse ICMS a um projeto esportivo aprovado.</p></div></li>
+   <li class="rv rv-d3"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M9 15l2 2 4-4"/></svg></div><div><h3>O projeto recebe</h3><p>O recurso vai para a conta do projeto aprovado no edital do Proesporte.</p></div></li>
+   <li class="rv rv-d4"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="1.6"/><path d="M4 17l5 1 .75-1.5M15 21v-4l-4-3 1-6"/><path d="M7 12V9l5-1 3 3 3 1"/></svg></div><div><h3>O atleta compete</h3><p>O dinheiro paga treinos, viagens, equipamentos e competições.</p></div></li>
+  </ol>
+  <p class="flow-note rv">Ou seja: o recurso vem de <mark class="hl">um imposto que a empresa já pagaria</mark> ao Estado.</p>
  </div>
 </section>
 
@@ -374,7 +436,7 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
   <p class="big"><s>Patrocínio é coisa de atleta famoso.</s><br><em>É coisa de projeto bem feito.</em></p>
   <div>
    <p>A lei de incentivo ao esporte permite que <strong>empresas destinem parte do ICMS</strong> que já pagariam ao Estado para projetos esportivos aprovados.</p>
-   <p>E não é só para entidades: <strong>pessoas físicas também podem propor</strong>, desde que estejam no Paraná há pelo menos dois anos.</p>
+   <p>E não é só para entidades: <mark class="hl"><strong>pessoas físicas também podem propor</strong></mark>, desde que estejam no Paraná há pelo menos dois anos.</p>
    <p>Ou seja: atletas em formação, técnicos, associações pequenas e projetos de paradesporto têm espaço real no programa.</p>
   </div>
  </div>
@@ -386,22 +448,22 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
   <h2>Para quem é o meu <em class="acc">trabalho</em></h2>
   <p class="lead">Cada projeto é desenhado para a realidade de quem vai executá-lo.</p>
   <div class="num-grid g4">
-   <article class="serv">
+   <article class="serv rv rv-d1">
     <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="1.6"/><path d="M4 17l5 1 .75-1.5M15 21v-4l-4-3 1-6"/><path d="M7 12V9l5-1 3 3 3 1"/></svg></div>
     <h3>Atletas e técnicos</h3>
     <p>Treino, viagens, equipamentos e equipe técnica podem fazer parte do projeto.</p>
    </article>
-   <article class="serv">
+   <article class="serv rv rv-d2">
     <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="5" r="1.6"/><path d="M11 7v8h4l4 5"/><path d="M11 11h5"/><path d="M7 11.5a5 5 0 1 0 6 6.5"/></svg></div>
     <h3>Paradesporto</h3>
     <p>Acessibilidade, equipamentos adaptados e apoio especializado pensados desde o orçamento.</p>
    </article>
-   <article class="serv">
+   <article class="serv rv rv-d3">
     <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg></div>
     <h3>Clubes e associações</h3>
     <p>Projetos de formação, rendimento e esporte para a vida toda, com metas consistentes.</p>
    </article>
-   <article class="serv">
+   <article class="serv rv rv-d4">
     <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h10M9 12h10M9 19h10"/><path d="M4 5l1 1 2-2M4 12l1 1 2-2M4 19l1 1 2-2"/></svg></div>
     <h3>Captação e contas</h3>
     <p>Depois da aprovação, apoio na busca de patrocinadores, na execução e na prestação de contas.</p>
@@ -410,14 +472,25 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
  </div>
 </section>
 
+<!-- o que o projeto cobre -->
+<section class="servicos" id="o-que-cobre" style="background:#fff;padding-top:0">
+ <div class="wrap">
+  <h2 class="rv">O que o projeto <em class="acc">pode cobrir</em></h2>
+  <p class="lead rv">Exemplos de itens que costumam entrar no orçamento de um projeto esportivo:</p>
+  <div class="cobre"><div class="cob rv rv-d1"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.1a3 3 0 0 1 0 5.8M21 21v-2a4 4 0 0 0-3-3.9"/></svg></div><div><h3>Equipe técnica</h3><p>Treinador, preparador físico e outros profissionais</p></div></div><div class="cob rv rv-d2"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5L3 11l2-2 7 1 4-4a2 2 0 0 1 3 3l-4 4 1 7-2 2-2.5-7.5"/></svg></div><div><h3>Viagens</h3><p>Passagens, hospedagem e alimentação em competições</p></div></div><div class="cob rv rv-d3"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"/></svg></div><div><h3>Equipamentos</h3><p>Materiais esportivos e equipamentos de treino</p></div></div><div class="cob rv rv-d1"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3a3 3 0 0 1-3 4M7 5H4a3 3 0 0 0 3 4"/></svg></div><div><h3>Competições</h3><p>Inscrições em campeonatos e taxas de federação</p></div></div><div class="cob rv rv-d2"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div><div><h3>Materiais e uniformes</h3><p>Uniformes, materiais de consumo e estrutura</p></div></div><div class="cob rv rv-d3"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="5" r="1.6"/><path d="M11 7v8h4l4 5"/><path d="M11 11h5"/><path d="M7 11.5a5 5 0 1 0 6 6.5"/></svg></div><div><h3>Acessibilidade</h3><p>Equipamento adaptado, acompanhante e transporte acessível</p></div></div></div>
+  <p class="cobre-note">Os itens permitidos variam conforme a área do projeto e as regras de cada edital.</p>
+ </div>
+</section>
+
 <!-- 5. números -->
 <section class="dark tex-dark" id="numeros">
  <div class="wrap">
-  <h2>Dinheiro existe. Falta <em class="acc">projeto bem feito.</em></h2>
+  <span class="selo rv"><span class="sd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="5" r="1.6"/><path d="M11 7v8h4l4 5"/><path d="M11 11h5"/><path d="M7 11.5a5 5 0 1 0 6 6.5"/></svg></span>Paradesporto: no mínimo 20% dos recursos</span>
+  <h2 class="rv">Dinheiro existe. Falta <em class="acc">projeto bem feito.</em></h2>
   <div class="stats">
-   <div class="stat"><b>R$ 50 mi</b><span>destinados no Edital nº 06 do Proesporte/PR</span></div>
-   <div class="stat"><b>20%</b><span>dos recursos reservados, no mínimo, a projetos para pessoas com deficiência</span></div>
-   <div class="stat"><b>18 meses</b><span>de prazo para captar os recursos depois da aprovação</span></div>
+   <div class="stat rv rv-d1"><b data-count="50" data-pre="R$ " data-suf=" mi">R$ 50 mi</b><span>destinados no Edital nº 06 do Proesporte/PR</span></div>
+   <div class="stat rv rv-d2"><b data-count="20" data-suf="%">20%</b><span>dos recursos reservados, no mínimo, a projetos para pessoas com deficiência</span></div>
+   <div class="stat rv rv-d3"><b data-count="18" data-suf=" meses">18 meses</b><span>de prazo para captar os recursos depois da aprovação</span></div>
   </div>
   <p class="note">Fonte: Secretaria de Estado do Esporte do Paraná. Valores e regras podem mudar a cada edital.</p>
  </div>
@@ -450,11 +523,11 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
   <p class="eyebrow">Como funciona</p>
   <h2>Do primeiro contato à <em class="acc">prestação de contas</em></h2>
   <ol class="steps">
-   <li><span class="n">01</span><div><h3>Conversa inicial</h3><p>Você me conta sobre seu esporte, sua rotina e seus objetivos.</p></div></li>
-   <li><span class="n">02</span><div><h3>Avaliação</h3><p>Analiso se o projeto se encaixa no edital, em qual área e com qual orçamento.</p></div></li>
-   <li><span class="n">03</span><div><h3>Elaboração</h3><p>Escrevo o projeto, monto o orçamento e organizo toda a documentação.</p></div></li>
-   <li><span class="n">04</span><div><h3>Inscrição e aprovação</h3><p>Inscrevo no edital e acompanho cada etapa da análise até o resultado.</p></div></li>
-   <li><span class="n">05</span><div><h3>Captação e contas</h3><p>Apoio na busca de patrocinadores, na execução e na prestação de contas.</p></div></li>
+   <li class="rv"><span class="n">01</span><div><h3>Conversa inicial</h3><p>Você me conta sobre seu esporte, sua rotina e seus objetivos.</p></div></li>
+   <li class="rv"><span class="n">02</span><div><h3>Avaliação</h3><p>Analiso se o projeto se encaixa no edital, em qual área e com qual orçamento.</p></div></li>
+   <li class="rv"><span class="n">03</span><div><h3>Elaboração</h3><p>Escrevo o projeto, monto o orçamento e organizo toda a documentação.</p></div></li>
+   <li class="rv"><span class="n">04</span><div><h3>Inscrição e aprovação</h3><p>Inscrevo no edital e acompanho cada etapa da análise até o resultado.</p></div></li>
+   <li class="rv"><span class="n">05</span><div><h3>Captação e contas</h3><p>Apoio na busca de patrocinadores, na execução e na prestação de contas.</p></div></li>
   </ol>
  </div>
 </section>
@@ -465,7 +538,7 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
   <p class="eyebrow">Para quem é</p>
   <h2>Vamos ver se <em class="acc">combinamos?</em></h2>
   <div class="fit">
-   <div class="fit-col fit-yes">
+   <div class="fit-col fit-yes rv rv-d1">
     <h3>É para você se…</h3>
     <ul>
      <li><span class="mk" aria-hidden="true">✓</span>Você é atleta, técnico ou representa uma entidade esportiva no Paraná</li>
@@ -474,7 +547,7 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
      <li><span class="mk" aria-hidden="true">✓</span>Está disposto a cuidar da execução e da prestação de contas</li>
     </ul>
    </div>
-   <div class="fit-col fit-no">
+   <div class="fit-col fit-no rv rv-d2">
     <h3>Talvez ainda não seja o momento se…</h3>
     <ul>
      <li><span class="mk" aria-hidden="true">✕</span>Você mudou para o Paraná há menos de dois anos</li>
@@ -657,6 +730,21 @@ footer{background:linear-gradient(rgba(30,31,31,.55),rgba(30,31,31,.55)),url("im
   document.getElementById('again').addEventListener('click',function(){i=0;pts=0;pcd=false;render()});
  }
  render();
+
+ /* revelar ao rolar + contadores */
+ var reduz=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function conta(el){
+  var alvo=+el.dataset.count,pre=el.dataset.pre||'',suf=el.dataset.suf||'';
+  if(reduz){return}
+  var t0=null,dur=1400;
+  function passo(t){if(!t0)t0=t;var p=Math.min((t-t0)/dur,1),v=Math.round(alvo*(1-Math.pow(1-p,3)));el.textContent=pre+v+suf;if(p<1)requestAnimationFrame(passo)}
+  el.textContent=pre+'0'+suf;requestAnimationFrame(passo);
+ }
+ var alvos=document.querySelectorAll('.rv');
+ if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('[data-count]').forEach(conta);io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  alvos.forEach(function(el){io.observe(el)});
+ }else{alvos.forEach(function(el){el.classList.add('in')})}
 
  var af=document.getElementById('avisoForm');
  if(af){
